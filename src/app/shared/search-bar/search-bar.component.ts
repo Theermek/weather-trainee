@@ -15,8 +15,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
-  constructor() {}
-
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

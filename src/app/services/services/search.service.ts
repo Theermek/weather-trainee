@@ -1,14 +1,22 @@
+import { Observable } from 'rxjs';
+import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { ApiService, Terms } from '../api/api.services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
+  constructor(private api: ApiService) {}
   /**
    * TODO: Метод должен получить введную пользователем строку, и связаться с методом отправляющем запрос к API
+   * Вызвать этот метод из search-bar
    * @param searchString
    */
-  public startSearch(searchString: string): void {
-    console.log(searchString);
+  public startSearch<T>(searchQuery: string): Observable<T> {
+    const query: Params = {
+      q: searchQuery,
+    };
+    return this.api.get<T>(Terms.search, query);
   }
 }

@@ -10,7 +10,7 @@ export class SearchService {
   constructor(private api: ApiService) {}
   /**
    * TODO: Метод должен получить введную пользователем строку, и связаться с методом отправляющем запрос к API
-   * Вызвать этот метод из search-bar
+   * Singletone
    * @param searchString
    */
   public startSearch<T>(searchQuery: string): Observable<T> {

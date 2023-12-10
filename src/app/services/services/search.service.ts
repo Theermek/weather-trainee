@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { ApiService, Terms } from '../api/api.services';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',

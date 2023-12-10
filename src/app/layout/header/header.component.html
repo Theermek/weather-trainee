@@ -1,6 +1,30 @@
-<!-- TODO: 
-    Реализовать верстку и правильное отображение трех компонентов: 
-    <app-current-city></app-current-city>
-    <app-search-bar></app-search-bar>
-    роут на страницу пользователя
--->
+<mat-toolbar>
+    <!-- Поправить верстку чтобы два блока распологались отдаленно друг от друга -->
+  <div class="nav-block">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <!-- Сюда нужно вставить search-bar -->
+  </div>
+  <div class="nav-block">
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

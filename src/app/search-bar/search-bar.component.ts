@@ -1,5 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { SearchService } from '../services/services/search.service';
 /**
  * TODO
  *  Кратко: На инпут вешается директива [formContro]="Название переменной из ts файла"
@@ -24,7 +32,7 @@ import { CommonModule } from '@angular/common';
  *
  *  Важно: не отвлекайся на посторонние статьи, темы, видосы, только по этим темам:
  *
- *  Что такое и как использовать reactive forms в angular
+ *  Что такое и как использовать reactive forms в   
  *  Что такое pipe в rxjs и как использовать операторы в нем
  *  Как использовать компоненты из angular Material
  *  Типы, generics, базовый typescrit
@@ -32,18 +40,33 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
-  ngOnInit(): void {
-    // здесь подписка на formControl
-    console.log();
+  searchInput: FormControl = new FormControl("");
+  private searchSubscription: Subscription = new Subscription;
+
+  constructor(private searchService: SearchService) {
+
   }
 
+  ngOnInit(): void {
+    // здесь подписка на formControl
+    this.searchSubscription = this.searchInput.valueChanges
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(1000),
+      )
+      .subscribe(subData => {
+        this.searchService.startSearch(subData);
+      });
+  }
   ngOnDestroy(): void {
     // здесь отписка
-    console.log();
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
   }
 }

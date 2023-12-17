@@ -17,6 +17,6 @@ export class SearchService {
     const query: Params = {
       q: searchQuery,
     };
-    return this.api.get<T>(Terms.search, query);
+    return this.api.get<T>(Terms.current, query);
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WeatherCardComponent } from '../pages/weather-card/weather-card.component';
 
 /**
  * TODO: https://angular.io/guide/routing-overview
@@ -8,7 +9,12 @@ import { RouterModule, Routes } from '@angular/router';
  * - Настроить роутинг этих страниц в переменной Routes
  */
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "",
+    component: WeatherCardComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

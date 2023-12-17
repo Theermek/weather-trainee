@@ -47,8 +47,7 @@ export class ApiService {
    * @returns
    */
   public get<T>(term: TermsType, query: Params): Observable<T> {
-    // of() нужно удалить
-    return of();
+    return this.httpClient.get<T>(this.buildUrl(term) + this.getQP(query));
   }
 
   private buildUrl(term: TermsType): string {
@@ -58,10 +57,11 @@ export class ApiService {
    * TOOD: Реализовать метод, который получает из объекта query,
    * строку, составленную из ключей и значений объектов.
    * Используй методы объекта и массива
+   * Создать компонент, в котором будет отображаться текущая погода (Material card)
    * @param query
    * @returns
    */
   private getQP(query: Params): string {
-    return '';
+    return Object.entries(query).flatMap(([key, value]) => `&${key}=${value}`).join('');
   }
 }

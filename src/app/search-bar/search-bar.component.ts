@@ -2,12 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SearchService } from '../services/services/search.service';
+import { WeatherCardService } from '../services/services/weather-card.service';
+import { ICurrentWeather } from '../models/current-weather.interface';
 /**
  * TODO
  *  Кратко: На инпут вешается директива [formContro]="Название переменной из ts файла"
@@ -37,10 +39,16 @@ import { SearchService } from '../services/services/search.service';
  *  Как использовать компоненты из angular Material
  *  Типы, generics, базовый typescrit
  */
+
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
@@ -49,7 +57,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   searchInput: FormControl = new FormControl("");
   private searchSubscription: Subscription = new Subscription;
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private weatherCardService: WeatherCardService) {
 
   }
 
@@ -57,11 +65,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     // здесь подписка на formControl
     this.searchSubscription = this.searchInput.valueChanges
       .pipe(
+        debounceTime(500),
         distinctUntilChanged(),
-        debounceTime(1000),
+        switchMap((value: string) => this.searchService.startSearch<ICurrentWeather>(value))
       )
-      .subscribe(subData => {
-        this.searchService.startSearch(subData);
+      .subscribe((subData: ICurrentWeather) => {
+        this.weatherCardService.setData = subData;
       });
   }
   ngOnDestroy(): void {

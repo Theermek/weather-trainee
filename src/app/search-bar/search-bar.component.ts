@@ -53,7 +53,6 @@ import { ICurrentWeather } from '../models/current-weather.interface';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
-
   searchInput: FormControl = new FormControl("");
   private searchSubscription: Subscription = new Subscription;
 

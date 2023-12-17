@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { MatInputModule } from '@angular/material/input';
@@ -65,6 +65,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     // здесь подписка на formControl
     this.searchSubscription = this.searchInput.valueChanges
       .pipe(
+        filter((value: string) => !!value),
         debounceTime(500),
         distinctUntilChanged(),
         switchMap((value: string) => this.searchService.startSearch<ICurrentWeather>(value))

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, enableProdMode } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Params } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 /**
@@ -47,7 +47,10 @@ export class ApiService {
    * @returns
    */
   public get<T>(term: TermsType, query: Params): Observable<T> {
-    return this.httpClient.get<T>(this.buildUrl(term) + this.getQP(query));
+    return this.httpClient.get<T>(this.buildUrl(term) + this.getQP(query)).pipe(catchError((error) => {
+      console.log(error);
+      return EMPTY;
+    }));
   }
 
   private buildUrl(term: TermsType): string {

@@ -4,65 +4,48 @@ import { Params } from '@angular/router';
 import { EMPTY, Observable, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
-/**
- * Разобраться для чего используется этот объект
- *
- */
+// Объект с термсами запросов
 export const Terms = {
   search: 'search.json',
   forecast: 'forecast.json',
   current: 'current.json',
 } as const;
 
-/**
- * @link https://www.typescriptlang.org/docs/handbook/2/types-from-types.html
- */
+// Тип для термсов запросов, typeof получает значение ключей в спсике ключей
 type TermsType = (typeof Terms)[keyof typeof Terms];
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
+  // Базовый URL и ключ API из environment
   private baseUrl: string = environment.baseURL;
   private apiKey: string = environment.apiKey;
 
   constructor(private httpClient: HttpClient) {}
 
-  /**
-   * TODO: в конструктор добавить зависимость HttpClient
-   * @link https://angular.io/guide/http-setup-server-communication
-   * @link https://angular.io/guide/http-request-data-from-server
-   * Отправить get запрос на сервер, в параметре URL построить строку с помощью методов buildingUrl(term) и this.getQp(query) методы возвращают строку и результаты методов нужно соеденить
-   * Этот метод должен возвращать Observable с результатом ответа от сервера
-   * Статья с примерами работы с httpClient @link https://blog.angular-university.io/angular-http/
-   *
-   * Окончательная логика фичи с поиском:
-   * Формконтрол в search-bar получает строку
-   * С помощью оператора switchMap() в pipe вызывает метод startSearch из сервиса search.service.ts
-   * Метод startSearch вызывает метод get из apiService и возвращает ответ от сервера
-   * Ответ от сервера получаем в subscribe
-   *
-   * @param term
-   * @param query
-   * @returns
-   */
   public get<T>(term: TermsType, query: Params): Observable<T> {
+    // Используем httpClient для выполнения GET-запроса с построением URL и обработкой ошибок
     return this.httpClient.get<T>(this.buildUrl(term) + this.getQP(query)).pipe(catchError((error) => {
       console.log(error);
+      // В случае ошибки возвращаем пустой Observable (EMPTY)
       return EMPTY;
     }));
   }
-
+  /**
+   * Строит URL для запроса на основе переданного термина.
+   *
+   * @param term Тип запроса (search, forecast, current)
+   * @returns Строка URL
+   */
   private buildUrl(term: TermsType): string {
     return this.baseUrl + term + `?key=${this.apiKey}`;
   }
   /**
-   * TOOD: Реализовать метод, который получает из объекта query,
-   * строку, составленную из ключей и значений объектов.
-   * Используй методы объекта и массива
-   * Создать компонент, в котором будет отображаться текущая погода (Material card)
-   * @param query
-   * @returns
+   * Создает строку параметров запроса из переданных параметров.
+   *
+   * @param query Параметры запроса
+   * @returns Строка параметров запроса
    */
   private getQP(query: Params): string {
     return Object.entries(query).flatMap(([key, value]) => `&${key}=${value}`).join('');

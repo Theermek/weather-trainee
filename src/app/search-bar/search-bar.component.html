@@ -1,4 +1,12 @@
   <mat-form-field>
-    <input matInput [formControl]="searchInput" placeholder="Search...">
+    <input matInput [formControl]="searchInput"
+            placeholder="Search..."
+            [matAutocomplete]="auto">
+    <mat-autocomplete (optionSelected)="onSelect($event)"  autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options$ | async" [value]="option | TrOptionToString">
+        <!-- same names respond with one weather only -->
+        {{option | TrOptionToString}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 

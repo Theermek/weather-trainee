@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ICurrentWeather } from 'src/app/models/current-weather.interface';
+import { IWeather } from 'src/app/models/weather.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherCardService {
-
-  private weatherCurrentStore: Subject<ICurrentWeather> = new Subject();
-
-  get getData(): Observable<ICurrentWeather> {
-    return this.weatherCurrentStore.asObservable();
+  // Хранилище данных о погоде в виде RxJS Subject
+  private weatherStore: Subject<IWeather> = new Subject();
+  // Observable, который предоставляет данные о погоде для подписчиков
+  get getData(): Observable<IWeather> {
+    return this.weatherStore.asObservable();
   }
-  
-  set setData(weatherArg: ICurrentWeather) {
-    this.weatherCurrentStore.next(weatherArg);
+  // Метод для установки новых данных о погоде и уведомления подписчиков
+  set setData(weatherArg: IWeather) {
+    this.weatherStore.next(weatherArg);
   }
 }

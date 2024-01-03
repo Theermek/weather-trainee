@@ -3,42 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SearchService } from '../services/services/search.service';
+import { WeatherService } from '../services/services/weather.service';
 import { WeatherCardService } from '../services/services/weather-card.service';
-import { ICurrentWeather } from '../models/current-weather.interface';
-/**
- * TODO
- *  Кратко: На инпут вешается директива [formContro]="Название переменной из ts файла"
- *  Далее в методе ngOnInit нужно подписаться на изменение значений, обработать полученное значеие в
- *  pipe (изучи что такое pipe в rxjs и погугли какие операторы rxjs самые необходимые,
- *  также погугли как можно обрабатывать значение из инпута поиска, кейс популярный инфа есть)
- *  После обработки значения из инпута необходимо подписаться и вызвать метод из search.service
- *  На этом логика будет реализована.
- *  По времени вместе с изучением, часов 6-8, но это примерное время, не ориентируйся на него.
- *
- *  Создать реактивную форму с инпутом в темплейте (html)
- *  @link https://angular.dev/guide/forms/reactive-forms#adding-a-basic-form-control
- *
- *  Использовать инпут поиска из библиотеки материал
- *  @link https://v16.material.angular.io/components/input/examples
- *  Во вкладкe examples самый первый инпут, есть пример использование в коде, изучи внимательно что и откуда импортируется
- *  Используй гугл и статьи
- *  Параллельно почиатй 3 статьи про тайпскрипт
- *  @link https://www.typescriptlang.org/docs/handbook/2/basic-types.html
- *  @link https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
- *  @link https://www.typescriptlang.org/docs/handbook/2/narrowing.html
- *
- *  Важно: не отвлекайся на посторонние статьи, темы, видосы, только по этим темам:
- *
- *  Что такое и как использовать reactive forms в   
- *  Что такое pipe в rxjs и как использовать операторы в нем
- *  Как использовать компоненты из angular Material
- *  Типы, generics, базовый typescrit
- */
+import { IWeather } from '../models/weather.interface';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import { AutoComplete } from '../models/autoComplete.interface';
+import { AutocompleteService } from '../services/services/autocomplete.service';
+import { TrOptionToStringPipe } from '../tr-option-to-string.pipe';
+
 
 @Component({
   selector: 'app-search-bar',
@@ -47,36 +23,56 @@ import { ICurrentWeather } from '../models/current-weather.interface';
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    TrOptionToStringPipe
   ],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit, OnDestroy {
-  searchInput: FormControl = new FormControl("");
+  // FormControl для управления значением инпута
+  public searchInput: FormControl = new FormControl("");
+  // Observable для отслеживания изменений в значении инпута и получения автозаполнения
+  public options$: Observable<AutoComplete[]> = this.searchInput.valueChanges
+    .pipe(
+      // Фильтрация значений (требуется минимум 3 символа)
+      filter((value: string) => value.length >= 3),
+      // Избегание повторных отправок запросов при неизменных значениях
+      distinctUntilChanged(),
+      // Переключение на новый поток данных при каждом изменении значения инпута
+      switchMap((value: string) => this.autocompleteService.fetchOptions<AutoComplete[]>(value))
+    );
+  // Подписка для отслеживания выбранного города и получения данных о погоде
   private searchSubscription: Subscription = new Subscription;
+  // BehaviorSubject для отслеживания выбранного города (для автозаполнения)
+  private selectedCity$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private searchService: SearchService, private weatherCardService: WeatherCardService) {
+  constructor(private weatherService: WeatherService,
+              private weatherCardService: WeatherCardService,
+              private autocompleteService: AutocompleteService) {
 
   }
-
+  // Инициализация компонента
   ngOnInit(): void {
-    // здесь подписка на formControl
-    this.searchSubscription = this.searchInput.valueChanges
-      .pipe(
-        filter((value: string) => !!value),
-        debounceTime(500),
-        distinctUntilChanged(),
-        switchMap((value: string) => this.searchService.startSearch<ICurrentWeather>(value))
-      )
-      .subscribe((subData: ICurrentWeather) => {
-        this.weatherCardService.setData = subData;
-      });
+    // Подписка на изменения выбранного города
+    this.searchSubscription = this.selectedCity$.pipe(
+      // Фильтрация значений (убеждаемся, что значение не пустое)
+      filter((value:string) => !!value),
+      // Переключение на новый поток данных при каждом изменении выбранного города
+      switchMap((value:string) => this.weatherService.fetchWeather<IWeather>(value))
+    )
+    .subscribe((weather) => this.weatherCardService.setData = weather)
   }
+  // Уничтожение компонента и отписка от подписки
   ngOnDestroy(): void {
-    // здесь отписка
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
     }
+  }
+  // Обработчик выбора элемента из автозаполнения
+  onSelect(event: MatAutocompleteSelectedEvent): void {
+    // Обновление значения выбранного города
+    this.selectedCity$.next(event.option.value)
   }
 }

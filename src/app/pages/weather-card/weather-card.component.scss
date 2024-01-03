@@ -1,39 +1,4 @@
-:host {
-  display: block;
-}
-
-.weather-card {
-  width: 300px;
-  margin: 16px;
-  background-color: #004071;
-  color: aliceblue;
-  border-radius: 10px;
-}
-
-mat-card-title {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.weather-header {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 20px 0;
-  padding: 0 30px 0 100px;
-}
-
-img {
-  margin: 0;
-  padding: 0;
-  height: 70px;
-}
-
-.weather-header p {
-  text-align: center;
-  vertical-align: middle;
-  font-size: 40px;
-  margin: 0;
-  padding: 0;
+mat-tab-group {
+    width: 70em;
+    margin: 20px 0 20px 40px;
 }

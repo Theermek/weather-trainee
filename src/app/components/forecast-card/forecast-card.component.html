@@ -1,0 +1,12 @@
+<ng-container *ngIf="weather$ | async as weather" >
+   <div class="container">
+    <mat-card *ngFor="let forecast of weather.forecast.forecastday">
+        <mat-card-title [title]="weather.location.name">{{weather.location.name | shortenText: 13}}</mat-card-title>
+        <mat-card-subtitle>{{forecast.date | date: "EE, MMMM d"}}</mat-card-subtitle>
+        <mat-card-content>
+            <img src={{forecast.day.condition.icon}} alt="">
+            <p>{{forecast.day.maxtemp_c | number: '1.0-0'}}°C</p>
+        </mat-card-content>
+    </mat-card>
+   </div>
+</ng-container>

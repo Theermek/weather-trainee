@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+mat-card {
+  max-width: 170px;
+  width: 170px;
+  height: 280px;
+  margin: 16px 5px;
+  background-color: #004071;
+  color: aliceblue;
+  border-radius: 10px;
+}
+
+mat-card-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  text-align: center;
+  font-size: large;
+}
+
+mat-card-subtitle {
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
+  text-align: center;
+  font-size: medium;
+}
+
+mat-card-content {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  height: 70px;
+}
+
+mat-card-content p {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}

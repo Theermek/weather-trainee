@@ -3,7 +3,9 @@
 }
 
 mat-toolbar {
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 10px 50px;
+  height: 80px;
 }
 
 .nav-block {
@@ -11,6 +13,11 @@ mat-toolbar {
   align-items: center;
 }
 
-.nav-bloc__logo {
-  max-height: 70px;
+.nav-block img {
+  width: 180px;
+  
+}
+
+.favorite-icon {
+  width: 180px;
 }

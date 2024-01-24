@@ -3,7 +3,9 @@
 }
 
 mat-toolbar {
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 10px 50px;
+  height: 80px;
 }
 
 .nav-block{
@@ -12,6 +14,11 @@ mat-toolbar {
 }
 
 .nav-block img {
-  height: 90px;
+  width: 180px;
+  
+}
+
+.favorite-icon {
+  width: 180px;
 }
 

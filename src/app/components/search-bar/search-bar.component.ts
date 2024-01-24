@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { WeatherApiService } from '../../services/weather-api.service';
+import { WeatherApiService } from '../../services/weather.service';
 import { WeatherDataService } from '../../services/weather-data.service';
 import { IWeather } from '../../models/weather.interface';
 import {

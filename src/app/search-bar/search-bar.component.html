@@ -1,4 +1,4 @@
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <input matInput [formControl]="searchInput"
             placeholder="Search..."
             [matAutocomplete]="auto">
@@ -8,5 +8,6 @@
         {{option | TrOptionToString}}
       </mat-option>
     </mat-autocomplete>
+    <mat-hint>enter your city or country</mat-hint>
   </mat-form-field>
 

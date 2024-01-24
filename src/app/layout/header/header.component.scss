@@ -6,12 +6,11 @@ mat-toolbar {
   justify-content: space-around;
 }
 
-.nav-block{
+.nav-block {
   display: flex;
   align-items: center;
 }
 
-.nav-block img {
-  height: 90px;
+.nav-bloc__logo {
+  max-height: 70px;
 }
-

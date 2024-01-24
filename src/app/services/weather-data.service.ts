@@ -3,9 +3,9 @@ import { Observable, Subject } from 'rxjs';
 import { IWeather } from 'src/app/models/weather.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class WeatherCardService {
+export class WeatherDataService {
   // Хранилище данных о погоде в виде RxJS Subject
   private weatherStore: Subject<IWeather> = new Subject();
   // Observable, который предоставляет данные о погоде для подписчиков

@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  inject,
+} from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { IWeather } from 'src/app/models/weather.interface';
@@ -16,5 +21,5 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class CurrentCardComponent {
   // Observable для получения данных о погоде из WeatherDataService
-  weather$: Observable<IWeather> = inject(WeatherDataService).getData;
+  @Input() weather?: IWeather;
 }

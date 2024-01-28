@@ -1,4 +1,4 @@
-<ng-container *ngIf="weather$ | async as weather" >
+<ng-container *ngIf="weather as weather" >
     <mat-card class="weather-card">
         <mat-card-title>{{ weather.location.name}}</mat-card-title>
         <mat-card-subtitle>{{ weather.location.country }}</mat-card-subtitle>

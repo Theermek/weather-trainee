@@ -1,9 +1,9 @@
-<mat-tab-group animationDuration="0ms">
+<mat-tab-group animationDuration="0ms" *ngIf="weather$ | async as weather">
     <mat-tab label="Current">
-        <app-current-card></app-current-card>
+        <app-current-card [weather]="weather"></app-current-card>
     </mat-tab>
     <mat-tab label="Forecast">
-        <app-forecast-card></app-forecast-card>
+        <app-forecast-card [weather]="weather"></app-forecast-card>
     </mat-tab>
 </mat-tab-group>
-  
+

@@ -8,8 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { MainComponent } from '../layout/main/main.component';
+import { MainComponent } from '../layout/content/main.component';
 import { SearchBarComponent } from '../components/search-bar/search-bar.component';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,12 +19,13 @@ import { SearchBarComponent } from '../components/search-bar/search-bar.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainComponent,
     HttpClientModule,
-    SearchBarComponent,
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
+    SearchBarComponent,
+    MainComponent,
+    LoaderComponent
   ],
 })
 export class AppModule {}

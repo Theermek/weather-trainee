@@ -1,0 +1,7 @@
+<ng-container *ngIf="loaderService.loaded; else placeholder">
+  <p>Loading...</p>
+</ng-container>
+
+<ng-template #placeholder>
+  <p>Placeholder</p>
+</ng-template>

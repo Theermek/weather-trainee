@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -57,7 +57,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   constructor(
     private weatherApiService: WeatherApiService,
     private weatherDataService: WeatherDataService,
-    private autocompleteService: AutocompleteService
+    private autocompleteService: AutocompleteService,
   ) {}
   // Инициализация компонента
   ngOnInit(): void {

@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { ApiService, Terms } from '../api/api.services';
+import { ApiService, Terms } from './api/api.services';
 
 @Injectable({
   providedIn: 'root',
 })
-export class WeatherService {
+export class WeatherApiService {
   constructor(private api: ApiService) {}
   /**
    * Выполняет запрос на сервер для получения прогноза погоды на несколько дней.
@@ -19,8 +19,8 @@ export class WeatherService {
     const query: Params = {
       q: searchQuery,
       days: 3,
-      aqi: "no",
-      alerts: "no",
+      aqi: 'no',
+      alerts: 'no',
     };
     // Используем метод get из ApiService для выполнения запроса на сервер
     return this.api.get<T>(Terms.forecast, query);

@@ -8,24 +8,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { MainComponent } from "../layout/main/main.component";
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { MainComponent } from '../layout/main/main.component';
+import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MainComponent,
-        HttpClientModule,
-        SearchBarComponent,
-        MatInputModule,
-        MatFormFieldModule,
-        BrowserAnimationsModule
-    ]
+  declarations: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MainComponent,
+    HttpClientModule,
+    SearchBarComponent,
+    MatInputModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+  ],
 })
 export class AppModule {}

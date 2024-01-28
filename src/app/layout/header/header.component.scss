@@ -8,9 +8,10 @@ mat-toolbar {
   height: 80px;
 }
 
-.nav-block{
+.nav-block {
   display: flex;
   align-items: center;
+  flex: 1 1 33%;
 }
 
 .nav-block img {
@@ -18,7 +19,10 @@ mat-toolbar {
   
 }
 
-.favorite-icon {
-  width: 180px;
+.nav-block__search-bar {
+  margin: auto;
 }
 
+.nav-block__favorite-btn {
+  margin-left: auto;
+}

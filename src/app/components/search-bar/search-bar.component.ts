@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';

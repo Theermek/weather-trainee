@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MainComponent } from '../layout/content/main.component';
 import { SearchBarComponent } from '../components/search-bar/search-bar.component';
-import { LoaderComponent } from '../components/loader/loader.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +24,6 @@ import { LoaderComponent } from '../components/loader/loader.component';
     BrowserAnimationsModule,
     SearchBarComponent,
     MainComponent,
-    LoaderComponent
   ],
 })
 export class AppModule {}

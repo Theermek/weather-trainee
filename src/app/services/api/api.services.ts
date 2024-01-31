@@ -1,7 +1,7 @@
-import { Injectable, enableProdMode } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable} from '@angular/core';
+import { HttpClient} from '@angular/common/http';
 import { Params } from '@angular/router';
-import { EMPTY, Observable, catchError, of } from 'rxjs';
+import { EMPTY, Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 // Объект с термсами запросов

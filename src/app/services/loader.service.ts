@@ -4,10 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoaderService {
-  private _loaded: boolean = false;
-loaded: any;
+  public isLoading: boolean = false;
 
-  public setLoaded(value: boolean): void {
-    this._loaded = value;
+  public setLoadingState(value: boolean): void {
+    this.isLoading = value;
   }
 }

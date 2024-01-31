@@ -1,13 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  inject,
-} from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IWeather } from 'src/app/models/weather.interface';
-import { WeatherDataService } from 'src/app/services/weather-data.service';
 import { MatCardModule } from '@angular/material/card';
 import { ShortenTextPipe } from 'src/app/shorten-text.pipe';
 
@@ -20,6 +13,5 @@ import { ShortenTextPipe } from 'src/app/shorten-text.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForecastCardComponent {
-  // Observable для получения данных о погоде из WeatherDataService
-  @Input() weather?: IWeather;
+  @Input() weather!: IWeather;
 }

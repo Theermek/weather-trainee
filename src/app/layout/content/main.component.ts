@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { LoaderComponent } from 'src/app/components/loader/loader.component';
+
 
 @Component({
   selector: 'app-main',
@@ -9,4 +11,5 @@ import { HeaderComponent } from '../header/header.component';
   imports: [CommonModule, HeaderComponent],
   standalone: true,
 })
-export class MainComponent {}
+export class MainComponent {
+}

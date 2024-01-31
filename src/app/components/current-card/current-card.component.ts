@@ -1,14 +1,6 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  inject,
-} from '@angular/core';
-
-import { Observable } from 'rxjs';
+import { CommonModule} from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IWeather } from 'src/app/models/weather.interface';
-import { WeatherDataService } from 'src/app/services/weather-data.service';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -20,6 +12,5 @@ import { MatCardModule } from '@angular/material/card';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentCardComponent {
-  // Observable для получения данных о погоде из WeatherDataService
-  @Input() weather?: IWeather;
+  @Input() weather!: IWeather;
 }

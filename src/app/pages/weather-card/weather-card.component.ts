@@ -10,7 +10,6 @@ import { WeatherDataService } from 'src/app/services/weather-data.service';
 import { MatCardModule } from '@angular/material/card';
 import { ShortenTextPipe } from "../../shorten-text.pipe";
 
-
 @Component({
     selector: 'app-weather-card',
     standalone: true,

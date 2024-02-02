@@ -15,7 +15,4 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class LoaderComponent{
   constructor(public loaderService: LoaderService) {}
   public loader: boolean = this.loaderService.isLoading;
-  ngOnInit(): void {
-    console.log(this.loader);
-  }
 }

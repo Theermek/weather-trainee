@@ -1,7 +1,10 @@
-<ng-container *ngIf="loaderService.loaded; else placeholder">
-  <p>Loading...</p>
-</ng-container>
-
-<ng-template #placeholder>
-  <p>Placeholder</p>
-</ng-template>
+<div class="placeholder">
+  <ng-container *ngIf="loader; else placeholder">
+    <iframe class="gif" src="../../../assets/icons/giphy.gif"></iframe>
+  </ng-container>
+  
+  <ng-template #placeholder>
+    <img src="../../../assets/icons/placeholder.svg" alt="placeholder">
+    <p>Find your weather</p>
+    </ng-template>
+</div>

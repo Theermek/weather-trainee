@@ -1,14 +1,14 @@
 <ng-container *ngIf="weather">
     <mat-card class="weather-card">
-        <mat-card-title>{{ weather.location.name}}</mat-card-title>
-        <mat-card-subtitle>{{ weather.location.country }}</mat-card-subtitle>
+        <mat-card-title>{{weather.location.name}}</mat-card-title>
+        <mat-card-subtitle>{{weather.location.country}}</mat-card-subtitle>
         <div class="weather-header">
-            <img src={{ weather.current.condition.icon }} alt="">
-            <p>{{ weather.current.temp_c | number: '1.0-0' }}°C</p>
+            <img [src]="weather.current.condition.icon" alt="current condition">
+            <p>{{weather.current.temp_c | number: '1.0-0'}}°C</p>
         </div>
         <mat-card-content>
-            <p>Time: {{ weather.location.localtime }}</p>
-            <p>Wind: {{ weather.current.wind_kph}}km/h, {{ weather.current.wind_dir}}</p>
+            <p>Time: {{weather.location.localtime}}</p>
+            <p>Wind: {{weather.current.wind_kph}}km/h, {{weather.current.wind_dir}}</p>
             <p>Condition: {{weather.current.condition.text}}</p>
         </mat-card-content>
     </mat-card>

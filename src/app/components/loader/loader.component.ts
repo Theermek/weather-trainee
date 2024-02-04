@@ -1,5 +1,5 @@
-import { NgIf } from '@angular/common';
-import { Component, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component} from '@angular/core';
 import { LoaderService } from 'src/app/services/loader.service';
 
 
@@ -7,13 +7,12 @@ import { LoaderService } from 'src/app/services/loader.service';
   selector: 'app-loader',
   standalone: true,
   imports: [
-    NgIf
+    CommonModule
   ],
   templateUrl: `./loader.component.html`,
   styleUrls: ['./loader.component.css'],
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent{
   constructor(public loaderService: LoaderService) {}
-
-  ngOnInit(): void {}
+  public loader: boolean = this.loaderService.isLoading;
 }

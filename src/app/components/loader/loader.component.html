@@ -1,5 +1,5 @@
 <div class="placeholder">
-  <ng-container *ngIf="loader; else placeholder">
+  <ng-container *ngIf="(loader$ | async) === true; else placeholder">
     <iframe class="gif" src="../../../assets/icons/giphy.gif"></iframe>
   </ng-container>
   

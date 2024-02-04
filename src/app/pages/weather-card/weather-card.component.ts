@@ -9,24 +9,27 @@ import { IWeather } from 'src/app/models/weather.interface';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
 import { MatCardModule } from '@angular/material/card';
 import { ShortenTextPipe } from "../../shorten-text.pipe";
+import { WeatherApiService } from 'src/app/services/weather.service';
 
 @Component({
-    selector: 'app-weather-card',
-    standalone: true,
-    templateUrl: './weather-card.component.html',
-    styleUrls: ['./weather-card.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        CommonModule,
-        MatTabsModule,
-        ForecastCardComponent,
-        CurrentCardComponent,
-        NgIf,
-        LoaderComponent,
-        MatCardModule,
-        ShortenTextPipe
-    ]
+  selector: 'app-weather-card',
+  standalone: true,
+  templateUrl: './weather-card.component.html',
+  styleUrls: ['./weather-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    MatTabsModule,
+    ForecastCardComponent,
+    CurrentCardComponent,
+    NgIf,
+    LoaderComponent,
+    MatCardModule,
+    ShortenTextPipe,
+  ],
 })
 export class WeatherCardComponent {
-  weather$: Observable<IWeather> = inject(WeatherDataService).getData;
+  weather$: Observable<IWeather | null> = inject(WeatherDataService).getData;
+  isLoading$: Observable<boolean> =
+    inject(WeatherApiService).isLoading$.asObservable();
 }

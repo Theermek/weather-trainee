@@ -9,5 +9,5 @@
     </mat-tab-group>    
 </ng-container>
 <ng-template #loader>
-    <app-loader></app-loader>
+    <app-loader [loader$]="isLoading$"></app-loader>
 </ng-template>

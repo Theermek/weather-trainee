@@ -34,7 +34,6 @@ export class WeatherApiService {
         return throwError(error); // Rethrow the error to be caught by the subscriber
       }),
       finalize(() => {
-        console.log('finalizwe');
         this.isLoading$.next(false);
       })
     );

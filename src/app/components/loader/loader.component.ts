@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LoaderService } from 'src/app/services/loader.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
@@ -11,7 +9,5 @@ import { LoaderService } from 'src/app/services/loader.service';
   styleUrls: ['./loader.component.css'],
 })
 export class LoaderComponent {
-  constructor(public loaderService: LoaderService) {}
-
-  @Input() public loader$: Observable<boolean> = this.loaderService.isLoading$;
+  
 }

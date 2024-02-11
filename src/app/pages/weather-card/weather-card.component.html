@@ -1,14 +1,17 @@
-
-<ng-container *ngIf="weather$ | async as weather; else placeholder">
-    <mat-tab-group animationDuration="0ms">
-        <mat-tab label="Current">
-            <app-current-card [weather]="weather"></app-current-card>
-        </mat-tab>
-        <mat-tab label="Forecast">
-            <app-forecast-card [weather]="weather"></app-forecast-card>
-        </mat-tab>
-    </mat-tab-group>    
-</ng-container>
-<ng-template #placeholder>
-    <app-loader></app-loader>
+<ng-template #loader>
+  <app-placeholder *loader="isLoading$ | async"></app-placeholder>
 </ng-template>
+<ng-template #content let-weather>
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Current">
+      <app-current-card [weather]="weather"></app-current-card>
+    </mat-tab>
+    <mat-tab label="Forecast">
+      <app-forecast-card [weather]="weather"></app-forecast-card>
+    </mat-tab>
+  </mat-tab-group>
+</ng-template>
+
+<ng-container *ngLet="weather$ | async as weather">
+  <ng-container *ngTemplateOutlet="weather ? content : loader; context: { $implicit: weather }"></ng-container>
+</ng-container>

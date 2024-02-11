@@ -1,5 +1,5 @@
 import { CommonModule} from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import { IWeather } from 'src/app/models/weather.interface';
 import { MatCardModule } from '@angular/material/card';
 

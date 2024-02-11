@@ -20,16 +20,16 @@ import { PlaceholderComponent } from "../../components/placeholder/placeholder.c
     styleUrls: ['./weather-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        CommonModule,
-        MatTabsModule,
-        ForecastCardComponent,
-        CurrentCardComponent,
-        NgIf,
-        LoaderComponent,
-        MatCardModule,
-        ShortenTextPipe,
-        LoaderDirective,
-        PlaceholderComponent
+      CommonModule,
+      MatTabsModule,
+      ForecastCardComponent,
+      CurrentCardComponent,
+      NgIf,
+      LoaderComponent,
+      MatCardModule,
+      ShortenTextPipe,
+      LoaderDirective,
+      PlaceholderComponent,
     ]
 })
 export class WeatherCardComponent {

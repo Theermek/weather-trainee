@@ -13,7 +13,6 @@ export class LoaderDirective {
   ) {}
     private loadingFactory: ComponentFactory<LoaderComponent> = this.componentFactoryResolver.resolveComponentFactory(LoaderComponent);
     private loadingComponent!: ComponentRef<LoaderComponent>;
-    private hasView = false ;
 
   @Input() set loader(argState: boolean | null) {
     console.log(argState)
@@ -27,5 +26,3 @@ export class LoaderDirective {
     }
   }
 }
-
-// placeholder factory or in weather card template wok with else

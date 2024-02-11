@@ -16,14 +16,6 @@
       ],
       "rules": {
         "@typescript-eslint/no-inferrable-types": "off",
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
         "@angular-eslint/component-selector": [
           "error",
           {

@@ -2,22 +2,6 @@
   display: block;
 }
 
-.placeholder {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 150px auto;
-  align-items: center;
-}
-
-img {
-  height: 500px;
-}
-
-p {
-  font-size: 50px;
-  margin-top: 50px;
-}
 
 .gif {
   height: 480px;

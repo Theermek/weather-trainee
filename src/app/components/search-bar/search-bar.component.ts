@@ -1,8 +1,15 @@
-import { Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  filter,
+  pairwise,
+  scan,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { MatInputModule } from '@angular/material/input';
@@ -43,9 +50,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
       // Избегание повторных отправок запросов при неизменных значениях
       distinctUntilChanged(),
       // Переключение на новый поток данных при каждом изменении значения инпута
-      switchMap((value: string) =>
-        this.autocompleteService.fetchOptions<AutoComplete[]>(value)
-      )
+      switchMap((value: string) => {
+        this.weatherDataService.clearStore();
+        return this.autocompleteService.fetchOptions<AutoComplete[]>(value);
+      })
     );
   // Подписка для отслеживания выбранного города и получения данных о погоде
   private searchSubscription: Subscription = new Subscription();
@@ -57,7 +65,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   constructor(
     private weatherApiService: WeatherApiService,
     private weatherDataService: WeatherDataService,
-    private autocompleteService: AutocompleteService,
+    private autocompleteService: AutocompleteService
   ) {}
   // Инициализация компонента
   ngOnInit(): void {

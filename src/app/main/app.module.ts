@@ -4,13 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MainComponent } from '../layout/content/main.component';
 import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 import { LoadingInterceptor } from '../common/loading.interceptor';
+import { authInterceptor } from '../common/auth.interceptor';
+import { provideRouter } from '@angular/router';
+import { routes } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,8 @@ import { LoadingInterceptor } from '../common/loading.interceptor';
       useClass: LoadingInterceptor,
       multi: true,
     },
+    provideRouter(routes),
+    provideHttpClient(withInterceptors([authInterceptor]))
   ],
   bootstrap: [AppComponent],
   imports: [

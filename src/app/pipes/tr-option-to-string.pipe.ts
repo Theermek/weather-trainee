@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AutoComplete } from './models/autoComplete.interface';
+import { AutoComplete } from '../models/autoComplete.interface';
 
 @Pipe({
     name: 'TrOptionToString',

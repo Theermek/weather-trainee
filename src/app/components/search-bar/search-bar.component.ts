@@ -23,7 +23,7 @@ import {
 } from '@angular/material/autocomplete';
 import { AutoComplete } from '../../models/autoComplete.interface';
 import { AutocompleteService } from '../../services/autocomplete.service';
-import { TrOptionToStringPipe } from '../../tr-option-to-string.pipe';
+import { TrOptionToStringPipe } from '../../pipes/tr-option-to-string.pipe';
 
 @Component({
   selector: 'app-search-bar',

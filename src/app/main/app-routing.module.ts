@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WeatherCardComponent } from '../pages/weather-card/weather-card.component';
+import { RegisterComponent } from '../auth/components/register/register.component';
+import { LoginComponent } from '../auth/components/login/login.component';
 
-/**
- * TODO: https://angular.io/guide/routing-overview
- * - Изучить как работает роутинг в приложении.
- * - Создать компоненты страниц ( Мой профиль, Страница погоды для города, Страница погоды )
- * - Настроить роутинг этих страниц в переменной Routes
- */
-
-const routes: Routes = [
-  {
-    path: "",
-    component: WeatherCardComponent
-  }
+export const routes: Routes = [
+  { path: 'dashboard', component: WeatherCardComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

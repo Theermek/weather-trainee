@@ -2,7 +2,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Params } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { ApiService, Terms } from './api/api.services';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
 
 @Injectable({

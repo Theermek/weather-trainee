@@ -6,7 +6,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { AuthService } from 'src/app/common/auth/services/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { IUser } from 'src/app/models/user.interface';
 
 @Component({
   selector: 'app-header',

@@ -1,14 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
   distinctUntilChanged,
   filter,
-  pairwise,
-  scan,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 

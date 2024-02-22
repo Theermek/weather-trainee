@@ -1,0 +1,84 @@
+:host {
+  margin: 100px auto;
+}
+
+.auth {
+  background-color: #004071;
+  border-radius: 10px;
+  width: 500px;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 500px;
+  height: 250px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+  
+input {
+  display: block;
+  border-radius: 6px;
+  font-size: 16px;
+  background: white;
+  width: 85%;
+  border: 0;
+  padding: 10px 10px;
+  margin: 10px auto;
+}
+
+.buttons {
+  max-height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-submit {
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 50%;
+  height: 50px;
+  border: 0.5px solid #000000;
+  border-radius: 8px;
+  background-color: rgba(244, 91, 105, 1);
+}
+
+.switch {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px auto 10px;
+}
+
+.btn-switch {
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  border: 0;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+p {
+  color: white;
+  font-size: 14px;
+  margin: 0;
+  margin-right: 20px;
+  padding: 0;
+}

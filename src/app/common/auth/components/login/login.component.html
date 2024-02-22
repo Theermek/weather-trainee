@@ -1,0 +1,14 @@
+<img src="../../../../../assets/icons/welcome.svg" alt="">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth">
+  <div class="inputs">
+    <input type="text" placeholder="Email" formControlName="email" />
+    <input type="password" placeholder="Password" formControlName="password" />
+  </div>
+  <div class="buttons">
+    <button class="btn-submit" type="submit">Log in</button>
+    <div class="switch">
+        <p>create an account</p>
+        <button class="btn-switch" (click)="switchToRegister()">Sign up</button>
+    </div>
+  </div>
+</form>

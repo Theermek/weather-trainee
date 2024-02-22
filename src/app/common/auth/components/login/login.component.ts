@@ -7,13 +7,14 @@ import { takeUntilDestroyed} from "@angular/core/rxjs-interop";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   standalone: true,
   imports: [ReactiveFormsModule],
 })
 export class LoginComponent {
-  fb = inject(FormBuilder);
-  authService = inject(AuthService);
-  router = inject(Router);
+  private fb = inject(FormBuilder);
+  private router = inject(Router)
+  private authService = inject(AuthService);  
 
   form = this.fb.nonNullable.group({
     email: ['', Validators.required],
@@ -22,10 +23,13 @@ export class LoginComponent {
 
   onSubmit(): void {
     this.authService.login(this.form.getRawValue())
-    .pipe(takeUntilDestroyed())
+    // .pipe(takeUntilDestroyed())
     .subscribe((response) => {
       console.log('response', response);
-      this.router.navigate(['/dashboard']);
     });
+  }
+
+  switchToRegister(): void {
+    this.router.navigate(['/register']);
   }
 }

@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { AuthService } from 'src/app/common/auth/services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -14,4 +15,13 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  authService = inject(AuthService)
+  http = inject(HttpClient);
+
+
+
+  logout(): void {
+    this.authService.logout();
+  }
+}

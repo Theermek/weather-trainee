@@ -8,7 +8,7 @@ import {Observable, startWith} from 'rxjs';
 import { IWeather } from 'src/app/models/weather.interface';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
 import { MatCardModule } from '@angular/material/card';
-import { ShortenTextPipe } from "../../shorten-text.pipe";
+import { ShortenTextPipe } from "../../pipes/shorten-text.pipe";
 import { WeatherApiService } from 'src/app/services/weather.service';
 import { LoaderDirective } from 'src/app/directives/loader.directive';
 import { PlaceholderComponent } from "../../components/placeholder/placeholder.component";

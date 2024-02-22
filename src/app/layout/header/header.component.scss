@@ -23,6 +23,26 @@ mat-toolbar {
   margin: auto;
 }
 
-.nav-block__favorite-btn {
+.profile {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.profile div {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #004071;
+}
+
+.btn-logout {
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  width: 90px;
+  height: 30px;
+  border: 0.5px solid #000000;
+  border-radius: 8px;
+  background-color: rgba(244, 91, 105, 1);
 }

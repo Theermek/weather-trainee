@@ -6,11 +6,9 @@
     <app-search-bar class="nav-block__search-bar"></app-search-bar>
   </div>
   <div class="nav-block">
-    <button
-      mat-icon-button
-      class="nav-block__favorite-btn"
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
+    <div class="profile">
+      <div >{{authService.currentUserSig()?.username}}</div>
+      <button class="btn-logout" *ngIf="authService.currentUserSig()" (click)="logout()">Log Out</button>
+    </div>
   </div>
 </mat-toolbar>
